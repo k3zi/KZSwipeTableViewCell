@@ -11,22 +11,11 @@
 		EA0944571C69F3CA00C2F98E /* KZSwipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0944561C69F3CA00C2F98E /* KZSwipeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		EA0944A11C69F66700C2F98E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = EA09449D1C69F66700C2F98E /* KZSwipeTableViewCellEample.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EA09447C1C69F64500C2F98E;
-			remoteInfo = KZSwipeTableViewCellEample;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		EA09444B1C69F21300C2F98E /* KZSwipeTableViewCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KZSwipeTableViewCell.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA09444E1C69F21300C2F98E /* KZSwipeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KZSwipeTableViewCell.h; sourceTree = "<group>"; };
 		EA0944501C69F21300C2F98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA0944561C69F3CA00C2F98E /* KZSwipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KZSwipeTableViewCell.swift; sourceTree = "<group>"; };
-		EA09449D1C69F66700C2F98E /* KZSwipeTableViewCellEample.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KZSwipeTableViewCellEample.xcodeproj; path = KZSwipeTableViewCellEample/KZSwipeTableViewCellEample.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +32,6 @@
 		EA0944411C69F21300C2F98E = {
 			isa = PBXGroup;
 			children = (
-				EA09449D1C69F66700C2F98E /* KZSwipeTableViewCellEample.xcodeproj */,
 				EA09444D1C69F21300C2F98E /* KZSwipeTableViewCell */,
 				EA09444C1C69F21300C2F98E /* Products */,
 			);
@@ -65,14 +53,6 @@
 				EA0944501C69F21300C2F98E /* Info.plist */,
 			);
 			path = KZSwipeTableViewCell;
-			sourceTree = "<group>";
-		};
-		EA09449E1C69F66700C2F98E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EA0944A21C69F66700C2F98E /* KZSwipeTableViewCellEample.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,28 +113,12 @@
 			mainGroup = EA0944411C69F21300C2F98E;
 			productRefGroup = EA09444C1C69F21300C2F98E /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = EA09449E1C69F66700C2F98E /* Products */;
-					ProjectRef = EA09449D1C69F66700C2F98E /* KZSwipeTableViewCellEample.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				EA09444A1C69F21300C2F98E /* KZSwipeTableViewCell */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		EA0944A21C69F66700C2F98E /* KZSwipeTableViewCellEample.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = KZSwipeTableViewCellEample.app;
-			remoteRef = EA0944A11C69F66700C2F98E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EA0944491C69F21300C2F98E /* Resources */ = {
