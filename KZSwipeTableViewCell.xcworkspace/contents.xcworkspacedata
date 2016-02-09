@@ -5,6 +5,6 @@
       location = "group:KZSwipeTableViewCell.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/Kezi/Dropbox/Projects/Open Source/KZSwipeTableViewCell/KZSwipeTableViewCellEample/KZSwipeTableViewCellExample.xcodeproj">
+      location = "group:KZSwipeTableViewCellExample/KZSwipeTableViewCellExample.xcodeproj">
    </FileRef>
 </Workspace>
