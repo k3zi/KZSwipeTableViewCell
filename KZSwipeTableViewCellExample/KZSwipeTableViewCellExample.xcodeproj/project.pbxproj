@@ -12,8 +12,7 @@
 		EA0944BC1C69FDDB00C2F98E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA0944BA1C69FDDB00C2F98E /* Main.storyboard */; };
 		EA0944BE1C69FDDB00C2F98E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA0944BD1C69FDDB00C2F98E /* Assets.xcassets */; };
 		EA0944C11C69FDDB00C2F98E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA0944BF1C69FDDB00C2F98E /* LaunchScreen.storyboard */; };
-		EA0944CE1C69FEEC00C2F98E /* KZSwipeTableViewCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0944C81C69FDFB00C2F98E /* KZSwipeTableViewCell.framework */; };
-		EA0944CF1C69FEEC00C2F98E /* KZSwipeTableViewCell.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA0944C81C69FDFB00C2F98E /* KZSwipeTableViewCell.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EA0944D41C6A00F400C2F98E /* KZSwipeTableViewCell.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0944D31C6A00F400C2F98E /* KZSwipeTableViewCell.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,7 +22,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EA0944CF1C69FEEC00C2F98E /* KZSwipeTableViewCell.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,7 +36,7 @@
 		EA0944BD1C69FDDB00C2F98E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA0944C01C69FDDB00C2F98E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA0944C21C69FDDB00C2F98E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EA0944C81C69FDFB00C2F98E /* KZSwipeTableViewCell.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = KZSwipeTableViewCell.framework; path = "/Users/Kezi/Library/Developer/Xcode/DerivedData/KZSwipeTableViewCell-fzsjbyvfqswslfbybnhhukugcssu/Build/Products/Debug-iphonesimulator/KZSwipeTableViewCell.framework"; sourceTree = "<absolute>"; };
+		EA0944D31C6A00F400C2F98E /* KZSwipeTableViewCell.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KZSwipeTableViewCell.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/KZSwipeTableViewCell-fzsjbyvfqswslfbybnhhukugcssu/Build/Products/Debug-iphonesimulator/KZSwipeTableViewCell.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA0944CE1C69FEEC00C2F98E /* KZSwipeTableViewCell.framework in Frameworks */,
+				EA0944D41C6A00F400C2F98E /* KZSwipeTableViewCell.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +54,7 @@
 		EA0944AA1C69FDDB00C2F98E = {
 			isa = PBXGroup;
 			children = (
+				EA0944D31C6A00F400C2F98E /* KZSwipeTableViewCell.framework */,
 				EA0944B51C69FDDB00C2F98E /* KZSwipeTableViewCellExample */,
 				EA0944B41C69FDDB00C2F98E /* Products */,
 			);
@@ -78,7 +77,6 @@
 				EA0944BD1C69FDDB00C2F98E /* Assets.xcassets */,
 				EA0944BF1C69FDDB00C2F98E /* LaunchScreen.storyboard */,
 				EA0944C21C69FDDB00C2F98E /* Info.plist */,
-				EA0944C81C69FDFB00C2F98E /* KZSwipeTableViewCell.framework */,
 			);
 			path = KZSwipeTableViewCellExample;
 			sourceTree = "<group>";
@@ -269,7 +267,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = KZSwipeTableViewCellExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stormedgeapps.KZSwipeTableViewCellExample;
@@ -281,7 +279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = KZSwipeTableViewCellExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.stormedgeapps.KZSwipeTableViewCellExample;
