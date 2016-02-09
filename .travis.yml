@@ -5,7 +5,7 @@ before_install:
     - gem install cocoapods -v 0.39.0 --no-rdoc --no-ri --no-document --quiet
 
 script:
-    - xctool -project KZSwipeTableViewCell.project -scheme KZSwipeTableViewCell -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+    - xctool -workspace KZSwipeTableViewCell.xcworkspace -scheme KZSwipeTableViewCellExample -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 
 branches:
   only:
