@@ -364,7 +364,7 @@ public class KZSwipeTableViewCell: UITableViewCell {
         }
     }
     
-    func swipeToOriginWithCompletion(completion: (()->Void)?) {
+    public func swipeToOriginWithCompletion(completion: (()->Void)?) {
         UIView.animateWithDuration(settings.animationDuration, delay: 0.0, usingSpringWithDamping: settings.damping, initialSpringVelocity: settings.velocity, options: [.CurveEaseInOut], animations: { () -> Void in
             if let contentScreenshotView = self._contentScreenshotView {
                 contentScreenshotView.frame.origin.x = 0

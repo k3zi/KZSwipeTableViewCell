@@ -118,6 +118,50 @@ class ViewController: UITableViewController {
                 
                 self.deleteCell(cell)
             })
+        } else if indexPath.row % numOfItems == 4 {
+            cell.textLabel?.text = "Right swipe only"
+            cell.detailTextLabel?.text = "Swipe"
+            
+            cell.setSwipeGestureWith(clockView, color: yellowColor, mode: .Switch, state: .State3, completionBlock: { (cell, state, mode) -> Void in
+                print("Did swipe Clock cell")
+            })
+            
+            cell.setSwipeGestureWith(listView, color: brownColor, mode: .Switch, state: .State4, completionBlock: { (cell, state, mode) -> Void in
+                print("Did swipe List cell")
+            })
+        } else if indexPath.row % numOfItems == 5 {
+            cell.textLabel?.text = "Small triggers"
+            cell.detailTextLabel?.text = "Using 10% and 50%"
+            cell.settings.firstTrigger = 0.1
+            cell.settings.secondTrigger = 0.5
+            
+            cell.setSwipeGestureWith(checkView, color: greenColor, mode: .Switch, state: .State1, completionBlock: { (cell, state, mode) -> Void in
+                print("Did swipe Checkmark cell")
+            })
+            
+            cell.setSwipeGestureWith(crossView, color: redColor, mode: .Exit, state: .State2, completionBlock: { (cell, state, mode) -> Void in
+                print("Did swipe Cross cell")
+                
+                self.deleteCell(cell)
+            })
+        } else if indexPath.row % numOfItems == 6 {
+            cell.textLabel?.text = "Exit Mode Cell + Confirmation"
+            cell.detailTextLabel?.text = "Swipe to delete"
+            
+            cell.setSwipeGestureWith(crossView, color: redColor, mode: .Exit, state: .State1, completionBlock: { (cell, state, mode) -> Void in
+                print("Did swipe Cross cell")
+                
+                let alert = UIAlertController(title: "Delete?", message: "Are you sure your want to delete the cell?", preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: { (action) -> Void in
+                    cell.swipeToOriginWithCompletion({ () -> Void in
+                        print("swiped back")
+                    })
+                }))
+                alert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (action) -> Void in
+                    self.deleteCell(cell)
+                }))
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
         }
     }
     
