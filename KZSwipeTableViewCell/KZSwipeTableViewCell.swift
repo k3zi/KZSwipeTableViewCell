@@ -44,8 +44,9 @@ public class KZSwipeTableViewCell: UITableViewCell {
     var settings_animationDuration = NSTimeInterval(0.4)
     var currentPercentage = CGFloat(0)
     
-    let settings_firstTrigger = CGFloat(0.15)
-    let settings_secondTrigger = CGFloat(0.47)
+    var settings_firstTrigger = CGFloat(0.15)
+    var settings_secondTrigger = CGFloat(0.47)
+    var settings_startImmediately = false
     
     var defaultColor = UIColor.whiteColor()
     
@@ -491,7 +492,7 @@ public class KZSwipeTableViewCell: UITableViewCell {
     func colorWithPercentage(percentage: CGFloat) -> UIColor {
         var color = defaultColor
         
-        if percentage > settings_firstTrigger && _modeForState1 != .None {
+        if (percentage > settings_firstTrigger || (settings_startImmediately && percentage > 0)) && _modeForState1 != .None {
             color = _color1 ?? color
         }
         
@@ -499,7 +500,7 @@ public class KZSwipeTableViewCell: UITableViewCell {
             color = _color2 ?? color
         }
         
-        if percentage < -settings_firstTrigger && _modeForState3 != .None {
+        if (percentage < -settings_firstTrigger || (settings_startImmediately && percentage < 0)) && _modeForState3 != .None {
             color = _color3 ?? color
         }
         
