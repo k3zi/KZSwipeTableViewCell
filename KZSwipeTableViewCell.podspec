@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
     spec.name = "KZSwipeTableViewCell"
 
-    spec.version = "1.0.0"
+    spec.version = "2.0.0"
     spec.summary = "Convenient UITableViewCell subclass that implements a swippable content to trigger actions (Swift Port of MCSwipeTableViewCell)"
     spec.homepage = "https://github.com/k3zi/KZSwipeTableViewCell"
     spec.license = { type: 'MIT', file: 'LICENSE' }

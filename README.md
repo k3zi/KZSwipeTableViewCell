@@ -2,7 +2,7 @@
 Convenient UITableViewCell subclass that implements a swippable content to trigger actions (Swift Port of KZSwipeTableViewCell)
 --------------------
 
-<p align="center"><img src="https://raw.github.com/alikaragoz/KZSwipeTableViewCell/master/github-assets/mcswipe-front.png"/></p>
+<p align="center"><img src="https://raw.github.com/k3zi/KZSwipeTableViewCell/master/github-assets/mcswipe-front.png"/></p>
 
 An effort to show how one would implement a UITableViewCell like the one we can see in the very well executed [Mailbox](http://www.mailboxapp.com/) iOS app.
 
@@ -10,12 +10,12 @@ An effort to show how one would implement a UITableViewCell like the one we can 
 ###Exit Mode
 Swiping the cell should make it disappear. Convenient in destructive modes.
 
-<p align="center"><img src="https://raw.github.com/alikaragoz/KZSwipeTableViewCell/master/github-assets/mcswipe-exit.gif"/></p>
+<p align="center"><img src="https://raw.github.com/k3zi/KZSwipeTableViewCell/master/github-assets/mcswipe-exit.gif"/></p>
 
 ###Switch Mode
 The cell will bounce back after selecting a state, this allows you to keep the cell. Convenient to switch an option quickly.
 
-<p align="center"><img src="https://raw.github.com/alikaragoz/KZSwipeTableViewCell/master/github-assets/mcswipe-switch.gif"/></p>
+<p align="center"><img src="https://raw.github.com/k3zi/KZSwipeTableViewCell/master/github-assets/mcswipe-switch.gif"/></p>
 
 ##Usage
 
