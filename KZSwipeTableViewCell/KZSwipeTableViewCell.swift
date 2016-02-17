@@ -29,6 +29,24 @@ public enum KZSwipeTableViewCellMode {
     case Switch
 }
 
+public struct KZSwipeTableViewCellSettings {
+    public var damping, velocity, firstTrigger, secondTrigger: CGFloat
+    public var animationDuration: NSTimeInterval
+    public var startImmediately, shouldAnimateIcons: Bool
+    public var defaultColor: UIColor
+    
+    init(damping: CGFloat = 0.6, velocity: CGFloat = 0.9, animationDuration: NSTimeInterval = 0.4, firstTrigger: CGFloat = 0.15, secondTrigger: CGFloat = 0.47, startImmediately: Bool = false, shouldAnimateIcons: Bool = true, defaultColor: UIColor = UIColor.whiteColor()) {
+        self.damping = damping
+        self.velocity = velocity
+        self.animationDuration = animationDuration
+        self.firstTrigger = firstTrigger
+        self.secondTrigger = secondTrigger
+        self.startImmediately = startImmediately
+        self.defaultColor = defaultColor
+        self.shouldAnimateIcons = shouldAnimateIcons
+    }
+}
+
 public typealias KZSwipeCompletionBlock = (cell: KZSwipeTableViewCell, state: KZSwipeTableViewCellState, mode: KZSwipeTableViewCellMode) -> Void
 
 public class KZSwipeTableViewCell: UITableViewCell {
@@ -37,18 +55,11 @@ public class KZSwipeTableViewCell: UITableViewCell {
     var _colorIndicatorView: UIView?
     var _slidingView: UIView?
     var _direction = KZSwipeTableViewCellDirection.Center
-    
     var _isExited = false
-    var settings_damping = CGFloat(0.6)
-    var settings_velocity = CGFloat(0.9)
-    var settings_animationDuration = NSTimeInterval(0.4)
+    
+    public var settings = KZSwipeTableViewCellSettings()
+    
     var currentPercentage = CGFloat(0)
-    
-    var settings_firstTrigger = CGFloat(0.15)
-    var settings_secondTrigger = CGFloat(0.47)
-    var settings_startImmediately = false
-    
-    var defaultColor = UIColor.whiteColor()
     
     var _view1: UIView?
     var _view2: UIView?
@@ -109,6 +120,8 @@ public class KZSwipeTableViewCell: UITableViewCell {
         completionBlock2 = nil
         completionBlock3 = nil
         completionBlock4 = nil
+        
+        settings = KZSwipeTableViewCellSettings()
     }
     
     //MARK: View Manipulation
@@ -122,7 +135,7 @@ public class KZSwipeTableViewCell: UITableViewCell {
         
         let colorIndicatorView = UIView(frame: self.bounds)
         colorIndicatorView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        colorIndicatorView.backgroundColor = defaultColor
+        colorIndicatorView.backgroundColor = settings.defaultColor
         self.addSubview(colorIndicatorView)
         
         let slidingView = UIView()
@@ -274,7 +287,7 @@ public class KZSwipeTableViewCell: UITableViewCell {
             if let slidingView = _slidingView {
                 slidingView.alpha = alphaWithPercentage(percentage)
             }
-            slideViewWithPercentage(percentage, view: view, isDragging: true)
+            slideViewWithPercentage(percentage, view: view, isDragging: self.settings.shouldAnimateIcons)
         }
         
         let color = colorWithPercentage(percentage)
@@ -292,20 +305,20 @@ public class KZSwipeTableViewCell: UITableViewCell {
         position.y = CGRectGetHeight(self.bounds) / 2.0
         
         if isDragging {
-            if percentage >= 0 && percentage < settings_firstTrigger {
-                position.x = offsetWithPercentage(settings_firstTrigger/2, relativeToWidth: CGRectGetWidth(self.bounds))
-            } else if percentage >= settings_firstTrigger {
-                position.x = offsetWithPercentage(percentage - (settings_firstTrigger/2), relativeToWidth: CGRectGetWidth(self.bounds))
-            } else if percentage < 0 && percentage >= -settings_firstTrigger {
-                position.x = CGRectGetWidth(self.bounds) - offsetWithPercentage(settings_firstTrigger/2, relativeToWidth: CGRectGetWidth(self.bounds))
-            } else if percentage < -settings_firstTrigger {
-                position.x = CGRectGetWidth(self.bounds) + offsetWithPercentage(percentage + (settings_firstTrigger/2), relativeToWidth: CGRectGetWidth(self.bounds))
+            if percentage >= 0 && percentage < settings.firstTrigger {
+                position.x = offsetWithPercentage(settings.firstTrigger/2, relativeToWidth: CGRectGetWidth(self.bounds))
+            } else if percentage >= settings.firstTrigger {
+                position.x = offsetWithPercentage(percentage - (settings.firstTrigger/2), relativeToWidth: CGRectGetWidth(self.bounds))
+            } else if percentage < 0 && percentage >= -settings.firstTrigger {
+                position.x = CGRectGetWidth(self.bounds) - offsetWithPercentage(settings.firstTrigger/2, relativeToWidth: CGRectGetWidth(self.bounds))
+            } else if percentage < -settings.firstTrigger {
+                position.x = CGRectGetWidth(self.bounds) + offsetWithPercentage(percentage + (settings.firstTrigger/2), relativeToWidth: CGRectGetWidth(self.bounds))
             }
         } else {
             if _direction == .Right {
-                position.x = offsetWithPercentage(settings_firstTrigger/2, relativeToWidth: CGRectGetWidth(self.bounds))
+                position.x = offsetWithPercentage(settings.firstTrigger/2, relativeToWidth: CGRectGetWidth(self.bounds))
             } else if _direction == .Left {
-                position.x = CGRectGetWidth(self.bounds) - offsetWithPercentage(settings_firstTrigger/2, relativeToWidth: CGRectGetWidth(self.bounds))
+                position.x = CGRectGetWidth(self.bounds) - offsetWithPercentage(settings.firstTrigger/2, relativeToWidth: CGRectGetWidth(self.bounds))
             } else {
                 return
             }
@@ -345,19 +358,19 @@ public class KZSwipeTableViewCell: UITableViewCell {
         UIView.animateWithDuration(duration, delay: 0, options: [.CurveEaseOut, .AllowUserInteraction], animations: { () -> Void in
             contentScreenshotView.frame = frame
             slidingView.alpha = 0
-            self.slideViewWithPercentage(percentage, view: self._activeView, isDragging: true)
+            self.slideViewWithPercentage(percentage, view: self._activeView, isDragging: self.settings.shouldAnimateIcons)
             }) { (finished) -> Void in
                 self.executeCompletionBlock()
         }
     }
     
     func swipeToOriginWithCompletion(completion: (()->Void)?) {
-        UIView.animateWithDuration(settings_animationDuration, delay: 0.0, usingSpringWithDamping: settings_damping, initialSpringVelocity: settings_velocity, options: [.CurveEaseInOut], animations: { () -> Void in
+        UIView.animateWithDuration(settings.animationDuration, delay: 0.0, usingSpringWithDamping: settings.damping, initialSpringVelocity: settings.velocity, options: [.CurveEaseInOut], animations: { () -> Void in
             if let contentScreenshotView = self._contentScreenshotView {
                 contentScreenshotView.frame.origin.x = 0
             }
             if let colorIndicatorView = self._colorIndicatorView {
-                colorIndicatorView.backgroundColor = self.defaultColor
+                colorIndicatorView.backgroundColor = self.settings.defaultColor
             }
             
             if let slidingView = self._slidingView {
@@ -460,7 +473,7 @@ public class KZSwipeTableViewCell: UITableViewCell {
             view = _view1
         }
         
-        if percentage >= settings_secondTrigger && _modeForState2 != .None {
+        if percentage >= settings.secondTrigger && _modeForState2 != .None {
             view = _view2
         }
         
@@ -468,7 +481,7 @@ public class KZSwipeTableViewCell: UITableViewCell {
             view = _view3
         }
         
-        if percentage <= -settings_secondTrigger && _modeForState4 != .None {
+        if percentage <= -settings.secondTrigger && _modeForState4 != .None {
             view = _view4
         }
         
@@ -478,10 +491,10 @@ public class KZSwipeTableViewCell: UITableViewCell {
     func alphaWithPercentage(percentage: CGFloat) -> CGFloat {
         var alpha = CGFloat(1.0)
         
-        if percentage >= 0 && percentage < settings_firstTrigger {
-            alpha = percentage / settings_firstTrigger
-        } else if percentage < 0 && percentage > -settings_firstTrigger {
-            alpha = fabs(percentage / settings_firstTrigger)
+        if percentage >= 0 && percentage < settings.firstTrigger {
+            alpha = percentage / settings.firstTrigger
+        } else if percentage < 0 && percentage > -settings.firstTrigger {
+            alpha = fabs(percentage / settings.firstTrigger)
         } else {
             alpha = 1.0
         }
@@ -490,21 +503,21 @@ public class KZSwipeTableViewCell: UITableViewCell {
     }
     
     func colorWithPercentage(percentage: CGFloat) -> UIColor {
-        var color = defaultColor
+        var color = settings.defaultColor
         
-        if (percentage > settings_firstTrigger || (settings_startImmediately && percentage > 0)) && _modeForState1 != .None {
+        if (percentage > settings.firstTrigger || (settings.startImmediately && percentage > 0)) && _modeForState1 != .None {
             color = _color1 ?? color
         }
         
-        if percentage > settings_secondTrigger && _modeForState2 != .None {
+        if percentage > settings.secondTrigger && _modeForState2 != .None {
             color = _color2 ?? color
         }
         
-        if (percentage < -settings_firstTrigger || (settings_startImmediately && percentage < 0)) && _modeForState3 != .None {
+        if (percentage < -settings.firstTrigger || (settings.startImmediately && percentage < 0)) && _modeForState3 != .None {
             color = _color3 ?? color
         }
         
-        if percentage <= -settings_secondTrigger && _modeForState4 != .None {
+        if percentage <= -settings.secondTrigger && _modeForState4 != .None {
             color = _color4 ?? color
         }
         
@@ -514,26 +527,26 @@ public class KZSwipeTableViewCell: UITableViewCell {
     func stateWithPercentage(percentage: CGFloat) -> KZSwipeTableViewCellState {
         var state = KZSwipeTableViewCellState.None
         
-        if percentage > settings_firstTrigger && _modeForState1 != .None {
+        if percentage > settings.firstTrigger && _modeForState1 != .None {
             state = .State1
         }
         
-        if percentage >= settings_secondTrigger && _modeForState2 != .None {
+        if percentage >= settings.secondTrigger && _modeForState2 != .None {
             state = .State2
         }
         
-        if percentage <= -settings_firstTrigger && _modeForState3 != .None {
+        if percentage <= -settings.firstTrigger && _modeForState3 != .None {
             state = .State3
         }
         
-        if percentage <= -settings_secondTrigger && _modeForState4 != .None {
+        if percentage <= -settings.secondTrigger && _modeForState4 != .None {
             state = .State4
         }
         
         return state
     }
     
-    class func viewWithImageName(name: String) -> UIView {
+    public class func viewWithImageName(name: String) -> UIView {
         let image = UIImage(named: name)
         let imageView = UIImageView(image: image)
         imageView.contentMode = UIViewContentMode.Center

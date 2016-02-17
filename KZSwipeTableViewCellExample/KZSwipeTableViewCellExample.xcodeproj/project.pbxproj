@@ -306,6 +306,7 @@
 				EA0944C71C69FDDB00C2F98E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
