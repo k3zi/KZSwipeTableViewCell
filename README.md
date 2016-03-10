@@ -1,5 +1,6 @@
 # KZSwipeTableViewCell [![Build Status](https://travis-ci.org/k3zi/KZSwipeTableViewCell.svg?branch=master)](https://travis-ci.org/k3zi/KZSwipeTableViewCell)
-Convenient UITableViewCell subclass that implements a swippable content to trigger actions (Swift Port of KZSwipeTableViewCell)
+
+###### Convenient UITableViewCell subclass that implements a swippable content to trigger actions (Swift Port of KZSwipeTableViewCell)
 --------------------
 
 <p align="center"><img src="https://raw.github.com/k3zi/KZSwipeTableViewCell/master/github-assets/mcswipe-front.png"/></p>
